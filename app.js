@@ -24,10 +24,14 @@ app.get('/app/tracks/:id', function(req1, res1) {
       timeout: 700
     }, function(err, res, body) {
 
-    sys.puts(res.request.response.headers.location);
+    try{
+      sys.puts(res.request.response.headers.location);
 
-    res1.setHeader('content-type', 'text/html');
-    res1.end(res.request.response.headers.location);
+      res1.setHeader('content-type', 'text/html');
+      res1.end(res.request.response.headers.location);
+    } catch (err) {
+      res1.end("");
+    }
 
   });
 });
