@@ -8,11 +8,15 @@ var sys = require("sys"),
 var app = express()
 app.use(express.logger('dev'))
 
-app.get('/song.txt', function(req1, res1) {
+var client_id = "8271c7113b570fed4c6027bf7cbfcd8c";
+
+app.get('/app/tracks/:id', function(req1, res1) {
 
   sys.puts("enter");
+  var id = req1.params.id;
 
-  var url = "http://api.soundcloud.com/tracks/2216557/stream?client_id=8271c7113b570fed4c6027bf7cbfcd8c";
+  //2216557
+  var url = "http://api.soundcloud.com/tracks/" + id + "/stream?client_id=" + client_id;
   var r = request.get(
     {
       url: url,
@@ -22,8 +26,8 @@ app.get('/song.txt', function(req1, res1) {
 
     sys.puts(res.request.response.headers.location);
 
-    //res1.setHeader('content-type', 'txt/html');
-    //res1.end(res.request.response.headers.location);
+    res1.setHeader('content-type', 'text/html');
+    res1.end(res.request.response.headers.location);
 
   });
 });
