@@ -23,7 +23,7 @@ app.get('/song.txt', function(req1, res1) {
     sys.puts(res.request.response.headers.location);
 
     //res1.setHeader('content-type', 'txt/html');
-    res1.end(res.request.response.headers.location);
+    //res1.end(res.request.response.headers.location);
 
   });
 });
